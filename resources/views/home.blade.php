@@ -158,8 +158,10 @@
                     </div>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-lg-4">
+            <div class="row pricing-plans">
+                @include('includes._pricing-plans')
+
+                {{-- <div class="col-lg-4">
                     <div class="single-price-plan">
                         <h4>Normal</h4>
                         <div class="price-plan">
@@ -209,7 +211,7 @@
                         </ul>
                         <a href="#" class="primary-btn price-btn">Get Started</a>
                     </div>
-                </div>
+                </div> --}}
             </div>
         </div>
     </section>
@@ -342,5 +344,32 @@
 
 
 @section('javascript')
-    
+    <script>
+        let isChecked = true;
+        $( document ).ready(function() {
+            $(".switch").on('click', 'input', function () {
+                isChecked = $(this).is(":checked");
+                console.log(isChecked);
+                switchPlan();
+            });
+        });
+
+        function switchPlan() {
+            $.ajax({
+                url: "{{ route('home.switch-plan') }}",
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                type: 'POST',
+                data: {'plan_type' : isChecked },
+                success: function(data) {
+                    $('.pricing-plans').html(data);
+                },
+                error: function(data){
+                    alert("ERROR - " + data.responseText);
+                }
+            });
+        }
+
+    </script>
 @endsection

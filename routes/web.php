@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ScheduleController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,9 +23,9 @@ Route::get('/about-us', function () {
     return view('about-us');
 })->name('about-us');
 
-Route::get('/schedule', function () {
-    return view('schedule');
-})->name('schedule');
+// Route::get('/schedule', function () {
+//     return view('schedule');
+// })->name('schedule');
 
 Route::get('/gallery', function () {
     return view('gallery');
@@ -43,3 +44,5 @@ Route::get('/contact', function () {
 })->name('contact');
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::post('/switch-plan', [HomeController::class, 'switchPlan'])->name('home.switch-plan');
+Route::get('/schedule', [ScheduleController::class, 'index'])->name('schedule');

@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use App\Models\Program;
 use App\Models\Category;
+use App\Models\PricingPlan;
 use Illuminate\Http\Request;
-use Carbon\Carbon;
 
 class HomeController extends Controller
 {
@@ -13,6 +14,7 @@ class HomeController extends Controller
     {
         $categories = Category::with(('programs'))->get();
         $programs = Program::with(('schedules'))->get();
+        $pricing_plans = PricingPlan::with('pricingPlanFeachers')->where('type', 1)->get();
         $stack = [];
         // foreach($programs as $program) { // для _classtime1.blade.php
         //     foreach($program->schedules->sortBy('started_at') as $key => $event) {
@@ -38,6 +40,17 @@ class HomeController extends Controller
         }
         ksort($stack);
 
-        return view('home', ['categories' => $categories, 'programs' => $programs, 'stack' => $stack]);
+        return view('home', ['categories' => $categories, 'programs' => $programs, 'stack' => $stack, 'pricing_plans' => $pricing_plans]);
+    }
+
+    public function switchPlan(Request $request)
+    {
+        if($request->plan_type == "true") {
+            $pricing_plans = PricingPlan::with('pricingPlanFeachers')->where('type', 1)->get();
+        } else if($request->plan_type == "false") {
+            $pricing_plans = PricingPlan::with('pricingPlanFeachers')->where('type', 2)->get();
+        }
+
+        return view('includes._pricing-plans', ['pricing_plans' => $pricing_plans])->render();
     }
 }
