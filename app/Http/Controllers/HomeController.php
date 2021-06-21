@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Carbon\Carbon;
 use App\Models\Program;
 use App\Models\Category;
+use App\Models\Contact;
 use App\Models\PricingPlan;
 use Illuminate\Http\Request;
 
@@ -52,5 +53,20 @@ class HomeController extends Controller
         }
 
         return view('includes._pricing-plans', ['pricing_plans' => $pricing_plans])->render();
+    }
+
+    public function contactForm(Request $request)
+    {
+        $contact = new Contact();
+        $contact->name = $request->name;
+        $contact->message = $request->message;
+
+        if(isset($request->phone)) {
+            $contact->phone = $request->phone;
+        }
+        if(isset($request->email)) {
+            $contact->email = $request->email;
+        }
+        $contact->save();
     }
 }

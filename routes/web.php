@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AboutUsController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ScheduleController;
@@ -45,4 +46,6 @@ Route::get('/contact', function () {
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::post('/switch-plan', [HomeController::class, 'switchPlan'])->name('home.switch-plan');
+Route::post('/contact-form', [HomeController::class, 'contactForm'])->name('home.contact-form');
 Route::get('/schedule', [ScheduleController::class, 'index'])->name('schedule');
+// Route::get('/about-us', [AboutUsController::class, 'index'])->name('about-us');

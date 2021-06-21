@@ -150,7 +150,24 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-lg-3 col-sm-6">
+                @foreach ($trainers as $trainer)
+                    <div class="col-lg-3 col-sm-6">
+                        <div class="trainer-item">
+                            <div class="ti-pic">
+                                <img src="{{ asset('img/trainer/' . $trainer->photo) }}" alt="">
+                                <div class="ti-links">
+                                    <a href="#"><i class="fa fa-facebook"></i></a>
+                                    <a href="#"><i class="fa fa-pinterest"></i></a>
+                                    <a href="#"><i class="fa fa-linkedin"></i></a>
+                                </div>
+                                <div class="trainer-text">
+                                    <h5>{{ $trainer->firstname }} {{ $trainer->lastname }} <span>- {{ $trainer->position }}</span></h5>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                @endforeach
+                {{-- <div class="col-lg-3 col-sm-6">
                     <div class="trainer-item">
                         <div class="ti-pic">
                             <img src="img/trainer/trainer-1.jpg" alt="">
@@ -209,7 +226,7 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> --}}
             </div>
         </div>
     </section>

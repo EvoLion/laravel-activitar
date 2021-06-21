@@ -15,10 +15,6 @@
                 @foreach ($plan->pricingPlanFeachers as $feature)
                 <li>{{$feature->feature}}</li>
                 @endforeach
-                {{-- <li>Unlimited access to the gym</li>
-                <li>1 classes per week</li>
-                <li>FREE drinking package</li>
-                <li>1 Free personal training</li> --}}
             </ul>
             <a href="#" class="primary-btn price-btn">Get Started</a>
         </div>

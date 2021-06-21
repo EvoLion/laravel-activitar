@@ -51,16 +51,16 @@
                 <div class="col-lg-8 offset-lg-1">
                     <div class="contact-form">
                         <h4>Get in touch</h4>
-                        <form action="#">
+                        <form action="{{ route('home.contact-form') }}" method="POST" id="contact_form">
                             <div class="row">
                                 <div class="col-lg-6">
-                                    <input type="text" placeholder="Name">
+                                    <input type="text" required name="name" placeholder="Name">
                                 </div>
                                 <div class="col-lg-6">
-                                    <input type="text" placeholder="Email">
+                                    <input type="email" name="email" placeholder="Email">
                                 </div>
                                 <div class="col-lg-12">
-                                    <textarea placeholder="Message"></textarea>
+                                    <textarea name="message" required placeholder="Message"></textarea>
                                     <button type="submit" class="c-btn">Send Message</button>
                                 </div>
                             </div>
@@ -76,5 +76,37 @@
 @endsection
 
 @section('javascript')
-    
+<script>
+    let isChecked = true;
+    let name = null;
+    let email = null;
+    let message = null;
+    $( document ).ready(function() {
+        $('#contact_form').submit(function(e) { 
+                let form = $(this).serializeArray();
+                name = $.trim(form[0].value)
+                email = $.trim(form[1].value)
+                message = $.trim(form[2].value)
+                contactForm();
+                e.preventDefault();
+			});
+        });
+
+        function contactForm() {
+            $.ajax({
+                url: "{{ route('home.contact-form') }}",
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                type: 'POST',
+                data: {'name' : name, 'email' : email, 'message' : message},
+                success: function(data) {
+
+                },
+                error: function(data){
+                    alert("ERROR - " + data.responseText);
+                }
+            });
+        }
+    </script>
 @endsection

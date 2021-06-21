@@ -328,10 +328,10 @@
             </div>
             <div class="map-contact-form">
                 <h5>Contact Us</h5>
-                <form action="#">
-                    <input type="text" placeholder="Name">
-                    <input type="text" class="phone" placeholder="Phone">
-                    <textarea placeholder="Message"></textarea>
+                <form action="{{ route('home.contact-form') }}" method="POST" id="contact_form">
+                    <input type="text" required name="name" placeholder="Name">
+                    <input type="text" class="phone" name="phone" placeholder="Phone">
+                    <textarea placeholder="Message" required name="message"></textarea>
                     <button type="submit" class="site-btn">Submit Now</button>
                 </form>
             </div>
@@ -346,12 +346,37 @@
 @section('javascript')
     <script>
         let isChecked = true;
+        let name = null;
+        let phone = null;
+        let message = null;
         $( document ).ready(function() {
             $(".switch").on('click', 'input', function () {
                 isChecked = $(this).is(":checked");
                 console.log(isChecked);
                 switchPlan();
             });
+
+            // $("#contact_form").validate({
+            //     rules:{
+            //         name:{
+            //             required: true,
+            //             minlength: 3,
+            //             maxlength: 20,
+            //         },
+            //         message:{
+            //             required: true,
+            //         },
+            //     }
+            // });
+
+            $('#contact_form').submit(function(e) { 
+                let form = $(this).serializeArray();
+                name = $.trim(form[0].value)
+                phone = $.trim(form[1].value)
+                message = $.trim(form[2].value)
+                contactForm();
+                e.preventDefault();
+			});
         });
 
         function switchPlan() {
@@ -371,5 +396,21 @@
             });
         }
 
+        function contactForm() {
+            $.ajax({
+                url: "{{ route('home.contact-form') }}",
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                type: 'POST',
+                data: {'name' : name, 'phone' : phone, 'message' : message},
+                success: function(data) {
+
+                },
+                error: function(data){
+                    alert("ERROR - " + data.responseText);
+                }
+            });
+        }
     </script>
 @endsection
