@@ -167,66 +167,6 @@
                         </div>
                     </div>
                 @endforeach
-                {{-- <div class="col-lg-3 col-sm-6">
-                    <div class="trainer-item">
-                        <div class="ti-pic">
-                            <img src="img/trainer/trainer-1.jpg" alt="">
-                            <div class="ti-links">
-                                <a href="#"><i class="fa fa-facebook"></i></a>
-                                <a href="#"><i class="fa fa-pinterest"></i></a>
-                                <a href="#"><i class="fa fa-linkedin"></i></a>
-                            </div>
-                            <div class="trainer-text">
-                                <h5>Becky Taylor <span>- Gymer</span></h5>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-sm-6">
-                    <div class="trainer-item">
-                        <div class="ti-pic">
-                            <img src="img/trainer/trainer-2.jpg" alt="">
-                            <div class="ti-links">
-                                <a href="#"><i class="fa fa-facebook"></i></a>
-                                <a href="#"><i class="fa fa-pinterest"></i></a>
-                                <a href="#"><i class="fa fa-linkedin"></i></a>
-                            </div>
-                            <div class="trainer-text">
-                                <h5>Noah Leonard <span>- Trainer</span></h5>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-sm-6">
-                    <div class="trainer-item">
-                        <div class="ti-pic">
-                            <img src="img/trainer/trainer-3.jpg" alt="">
-                            <div class="ti-links">
-                                <a href="#"><i class="fa fa-facebook"></i></a>
-                                <a href="#"><i class="fa fa-pinterest"></i></a>
-                                <a href="#"><i class="fa fa-linkedin"></i></a>
-                            </div>
-                            <div class="trainer-text">
-                                <h5>Evelyn Fields <span>- Gymer</span></h5>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-sm-6">
-                    <div class="trainer-item">
-                        <div class="ti-pic">
-                            <img src="img/trainer/trainer-4.jpg" alt="">
-                            <div class="ti-links">
-                                <a href="#"><i class="fa fa-facebook"></i></a>
-                                <a href="#"><i class="fa fa-pinterest"></i></a>
-                                <a href="#"><i class="fa fa-linkedin"></i></a>
-                            </div>
-                            <div class="trainer-text">
-                                <h5>Leroy Guzman <span>- Manager</span></h5>
-                            </div>
-                        </div>
-                    </div>
-                </div> --}}
             </div>
         </div>
     </section>

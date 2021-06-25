@@ -23,7 +23,7 @@
                         <li class="{{ Route::currentRouteNamed('posts.index') ? 'active' : '' }}"><a href="{{ route('posts.index') }}">Blog</a>
                             <ul class="dropdown">
                                 <li><a href="{{ route('about-us') }}">About Us</a></li>
-                                <li><a href="{{ route('posts.show') }}">Blog Details</a></li>
+                                <li><a href="{{ route('blog.show') }}">Blog Details</a></li>
                             </ul>
                         </li>
                         <li class="{{ Route::currentRouteNamed('contact') ? 'active' : '' }}"><a href="{{ route('contact') }}">Contacts</a></li>

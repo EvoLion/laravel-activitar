@@ -12,16 +12,22 @@
     <x-header class="header-normal" />
 
     <!-- Breadcrumb Section Begin -->
-    <section class="blog-single-hero set-bg" data-setbg="img/blog-single-hero.jpg">
+    <section class="blog-single-hero set-bg" data-setbg="/img/blog-single-hero.jpg">
         <div class="container">
             <div class="row">
                 <div class="col-xl-7 col-lg-7 m-auto text-center">
                     <div class="bs-hero-text">
-                        <h2>A Closer Look At Our Front Porch Items From Lowe’s</h2>
+                        <h2>{{ $post->title }}</h2>
                         <ul>
-                            <li>By Phil Martinez</li>
-                            <li>January 31, 2019</li>
-                            <li>08 Comments</li>
+                            <li>By {{ $post->user->name }}</li>
+                            <li>{{ $post->created_at->isoFormat('MMMM D, YYYY') }}</li>
+                            
+                            @if($post->comments_count)
+                                <li>{{ $post->comments_count }} Comments</li>
+                            @else
+                                <li>0 Comments</li>
+                            @endif
+                            
                         </ul>
                     </div>
                 </div>
@@ -37,6 +43,9 @@
                 <div class="col-lg-8">
                     <div class="blog-single-text">
                         <div class="blog-text">
+                            <p>{{ $post->content }}</p>
+                        </div>
+                        {{-- <div class="blog-text">
                             <p>I know how terrible it can be for you at nights and even when you wake up. The burning
                                 back pain you experience can be a terrible problem. I know that because of this burning
                                 pain, you hardly get all the sleep you need at nights. You are not alone… and thankfully
@@ -54,16 +63,16 @@
                         <div class="blog-pic">
                             <div class="row">
                                 <div class="col-lg-6">
-                                    <img src="img/blog-single-1.jpg" alt="">
+                                    <img src="/img/blog-single-1.jpg" alt="">
                                 </div>
                                 <div class="col-lg-6">
-                                    <img src="img/blog-single-2.jpg" alt="">
+                                    <img src="/img/blog-single-2.jpg" alt="">
                                     <div class="row">
                                         <div class="col-sm-6">
-                                            <img src="img/blog-single-3.jpg" alt="">
+                                            <img src="/img/blog-single-3.jpg" alt="">
                                         </div>
                                         <div class="col-sm-6">
-                                            <img src="img/blog-single-4.jpg" alt="">
+                                            <img src="/img/blog-single-4.jpg" alt="">
                                         </div>
                                     </div>
                                 </div>
@@ -95,11 +104,14 @@
                                 welcoming and friendly and the service is fabulous. There are hundreds of hotels that
                                 are self-styled “boutique” places to stay, but not all of them fall into the traditional
                                 definition of boutique, which includes.</p>
-                        </div>
+                        </div> --}}
                         <div class="blog-tag-share">
                             <div class="tags">
-                                <a href="#">Gym</a>
-                                <a href="#">Crossfit</a>
+                                @foreach ($post->tags as $tag)
+                                    <a href="{{ route('posts.tags.index', ['tag' => $tag->id]) }}">{{ $tag->name }}</a>
+                                @endforeach
+                                {{-- <a href="#">Gym</a>
+                                <a href="#">Crossfit</a> --}}
                             </div>
                             <div class="social-share">
                                 <span>Share:</span>
@@ -113,65 +125,34 @@
                     </div>
                 </div>
                 <div class="col-lg-4">
+
                     <div class="blog-single-sidebar">
+
                         <div class="bs-latest-news">
                             <h4>News Latest</h4>
-                            <a href="#" class="bl-item set-bg" data-setbg="img/sidebar-latest.jpg">
-                                <h5>We all have those moments in our lives when we feel.</h5>
-                                <span>January 31, 2019</span>
-                            </a>
-                            <a href="#" class="bl-item set-bg" data-setbg="img/sidebar-latest.jpg">
-                                <h5>Finding the perfect learning tool for Flash is a daunting task to any novice.</h5>
-                                <span>January 31, 2019</span>
-                            </a>
-                            <a href="#" class="bl-item set-bg" data-setbg="img/sidebar-latest.jpg">
-                                <h5>The buying of large-screen TVs has absolutely skyrocketed lately. </h5>
-                                <span>January 31, 2019</span>
-                            </a>
-                            <a href="#" class="bl-item set-bg" data-setbg="img/sidebar-latest.jpg">
-                                <h5>Kidney stones are very hard mineral deposits that happen.</h5>
-                                <span>January 31, 2019</span>
-                            </a>
+                            @foreach ($latest_news as $news)
+                                <a href="{{ route('posts.show', ['post' => $news->id]) }}" class="bl-item set-bg" data-setbg="/img/sidebar-latest.jpg">
+                                    <h5>{{ $news->title }}</h5>
+                                    <span>{{ $news->created_at->isoFormat('MMMM D, YYYY') }}</span>
+                                </a>
+                            @endforeach
                         </div>
+
                         <div class="bs-recent-news">
                             <h4>Recent News</h4>
-                            <a href="#" class="br-item">
-                                <div class="bi-pic">
-                                    <img src="img/br-recent-1.jpg" alt="">
-                                </div>
-                                <div class="bi-text">
-                                    <span>Jan 31, 2019</span>
-                                    <h5>Easy Home Remedy For Moisture Control Of Skin</h5>
-                                </div>
-                            </a>
-                            <a href="#" class="br-item">
-                                <div class="bi-pic">
-                                    <img src="img/br-recent-2.jpg" alt="">
-                                </div>
-                                <div class="bi-text">
-                                    <span>Jan 31, 2019</span>
-                                    <h5>Turkey Gravy Secrets Revealed</h5>
-                                </div>
-                            </a>
-                            <a href="#" class="br-item">
-                                <div class="bi-pic">
-                                    <img src="img/br-recent-3.jpg" alt="">
-                                </div>
-                                <div class="bi-text">
-                                    <span>Jan 31, 2019</span>
-                                    <h5>How To Remove Kidney Stones</h5>
-                                </div>
-                            </a>
-                            <a href="#" class="br-item">
-                                <div class="bi-pic">
-                                    <img src="img/br-recent-4.jpg" alt="">
-                                </div>
-                                <div class="bi-text">
-                                    <span>Jan 31, 2019</span>
-                                    <h5>Help Finding Information Online</h5>
-                                </div>
-                            </a>
+                            @foreach ($most_commented as $commented_post)
+                                <a href="{{ route('posts.show', ['post' => $commented_post->id]) }}" class="br-item">
+                                    <div class="bi-pic">
+                                        <img src="{{ asset('img/blog/' . $commented_post->background_image) }}" alt="" style="height: 90px; width: 110px; object-fit: cover">
+                                    </div>
+                                    <div class="bi-text">
+                                        <span>{{ $commented_post->created_at->isoFormat('MMMM D, YYYY') }}</span>
+                                        <h5>{{ $commented_post->title }}</h5>
+                                    </div>
+                                </a>
+                            @endforeach
                         </div>
+
                     </div>
                 </div>
             </div>
@@ -180,8 +161,18 @@
                     <div class="recent-news">
                         <h4>Relatest News</h4>
                         <div class="row">
-                            <div class="col-lg-4">
-                                <div class="recent-item set-bg" data-setbg="img/recent-1.jpg">
+                            {{-- @foreach ( as )
+                                <div class="col-lg-4">
+                                    <div class="recent-item set-bg" data-setbg="/img/recent-1.jpg">
+                                        <a href="#" class="recent-text">
+                                            <div class="categories">Gym & Croosfit</div>
+                                            <h5>Many people sign up for affiliate programs</h5>
+                                        </a>
+                                    </div>
+                                </div>
+                            @endforeach --}}
+                            {{-- <div class="col-lg-4">
+                                <div class="recent-item set-bg" data-setbg="/img/recent-1.jpg">
                                     <a href="#" class="recent-text">
                                         <div class="categories">Gym & Croosfit</div>
                                         <h5>Many people sign up for affiliate programs</h5>
@@ -189,7 +180,7 @@
                                 </div>
                             </div>
                             <div class="col-lg-4">
-                                <div class="recent-item set-bg" data-setbg="img/recent-2.jpg">
+                                <div class="recent-item set-bg" data-setbg="/img/recent-2.jpg">
                                     <a href="#" class="recent-text">
                                         <div class="categories">Gym & Croosfit</div>
                                         <h5>Many people sign up for affiliate programs</h5>
@@ -197,30 +188,35 @@
                                 </div>
                             </div>
                             <div class="col-lg-4">
-                                <div class="recent-item set-bg" data-setbg="img/recent-3.jpg">
+                                <div class="recent-item set-bg" data-setbg="/img/recent-3.jpg">
                                     <a href="#" class="recent-text">
                                         <div class="categories">Gym & Croosfit</div>
                                         <h5>Many people sign up for affiliate programs</h5>
                                     </a>
                                 </div>
-                            </div>
+                            </div> --}}
                         </div>
                     </div>
+
+                    <div class="blog-single-text">
+                        @include('posts.includes._comments')
+                    </div>
+
                     <div class="leave-comment-form">
                         <h4>Leave A Comment</h4>
-                        <form action="#">
+                        <form action="{{ route('posts.comment-form', ['post' => $post->id]) }}" method="POST" id="leave-comment-form">
                             <div class="row">
                                 <div class="col-lg-4">
-                                    <input type="text" placeholder="Name">
+                                    <input type="text" name="name" required placeholder="Name">
                                 </div>
                                 <div class="col-lg-4">
-                                    <input type="text" placeholder="Email">
+                                    <input type="text" name="email" required placeholder="Email">
                                 </div>
                                 <div class="col-lg-4">
-                                    <input type="text" placeholder="Phone">
+                                    <input type="text" name="phone" placeholder="Phone">
                                 </div>
                                 <div class="col-lg-12">
-                                    <textarea placeholder="Comment"></textarea>
+                                    <textarea placeholder="Comment" required name="comment"></textarea>
                                     <button type="submit" class="leave-btn">Post Comment</button>
                                 </div>
                             </div>
@@ -238,5 +234,40 @@
 @endsection
 
 @section('javascript')
-    
+<script>
+    let name = null;
+    let email = null;
+    let phone = null;
+    let comment = null;
+    $( document ).ready(function() {
+
+        $('#leave-comment-form').submit(function(e) { 
+            let form = $(this).serializeArray();
+            name = $.trim(form[0].value)
+            email = $.trim(form[1].value)
+            phone = $.trim(form[2].value)
+            comment = $.trim(form[3].value)
+            console.log(form);
+            commentForm();
+            e.preventDefault();
+        });
+    });
+
+    function commentForm() {
+        $.ajax({
+            url: "{{ route('posts.comment-form', ['post' => $post->id]) }}",
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            type: 'POST',
+            data: {'name' : name, 'email' : email, 'phone' : phone, 'comment' : comment},
+            success: function(data) {
+                $('.blog-single-text').html(data);
+            },
+            error: function(data){
+                alert("ERROR - " + data.responseText);
+            }
+        });
+    }
+</script>
 @endsection

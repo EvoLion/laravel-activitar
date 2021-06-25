@@ -44,4 +44,12 @@ class UserFactory extends Factory
             ];
         });
     }
+
+    public function admin() // метод для фабрики состояния
+    {
+        return $this->state([
+            'name' => 'Admin',
+            'email' => 'admin@laravel.test',
+        ]);
+    }
 }
