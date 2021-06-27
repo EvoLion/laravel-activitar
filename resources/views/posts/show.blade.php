@@ -161,17 +161,7 @@
                     <div class="recent-news">
                         <h4>Relatest News</h4>
                         <div class="row">
-                            {{-- @foreach ( as )
-                                <div class="col-lg-4">
-                                    <div class="recent-item set-bg" data-setbg="/img/recent-1.jpg">
-                                        <a href="#" class="recent-text">
-                                            <div class="categories">Gym & Croosfit</div>
-                                            <h5>Many people sign up for affiliate programs</h5>
-                                        </a>
-                                    </div>
-                                </div>
-                            @endforeach --}}
-                            {{-- <div class="col-lg-4">
+                            <div class="col-lg-4">
                                 <div class="recent-item set-bg" data-setbg="/img/recent-1.jpg">
                                     <a href="#" class="recent-text">
                                         <div class="categories">Gym & Croosfit</div>
@@ -194,11 +184,11 @@
                                         <h5>Many people sign up for affiliate programs</h5>
                                     </a>
                                 </div>
-                            </div> --}}
+                            </div>
                         </div>
                     </div>
 
-                    <div class="blog-single-text">
+                    <div class="blog-single-text comments">
                         @include('posts.includes._comments')
                     </div>
 
@@ -262,7 +252,7 @@
             type: 'POST',
             data: {'name' : name, 'email' : email, 'phone' : phone, 'comment' : comment},
             success: function(data) {
-                $('.blog-single-text').html(data);
+                $('.comments').html(data);
             },
             error: function(data){
                 alert("ERROR - " + data.responseText);

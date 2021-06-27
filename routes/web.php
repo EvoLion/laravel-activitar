@@ -20,25 +20,15 @@ use Illuminate\Support\Facades\Auth;
 |
 */
 
-// Route::get('/', function () {
-//     return view('home');
-// })->name('home');
-
 Route::get('/about-us', function () {
     return view('about-us');
 })->name('about-us');
-
-// Route::get('/schedule', function () {
-//     return view('schedule');
-// })->name('schedule');
+;
 
 Route::get('/gallery', function () {
     return view('gallery');
 })->name('gallery');
 
-// Route::get('/blog', function () {
-//     return view('posts.index');
-// })->name('posts.index');
 
 Route::get('/blog-single', function () {
     return view('posts.show');
@@ -54,6 +44,10 @@ Route::post('/switch-plan', [HomeController::class, 'switchPlan'])->name('home.s
 Route::post('/contact-form', [HomeController::class, 'contactForm'])->name('home.contact-form');
 Route::get('/schedule', [ScheduleController::class, 'index'])->name('schedule');
 Route::get('/about-us', [AboutUsController::class, 'index'])->name('about-us');
-Route::resource('posts', PostController::class);
+Route::resource('posts', PostController::class)->only(['index', 'show']);
 Route::post('/posts/{post}/comment-form/', [CommentController::class, 'commentForm'])->name('posts.comment-form');
 Route::get('/posts/tag/{tag}', [PostTagController::class, 'index'])->name('posts.tags.index');
+
+Route::group(['prefix' => 'admin'], function () {
+    Voyager::routes();
+});

@@ -160,58 +160,6 @@
             </div>
             <div class="row pricing-plans">
                 @include('includes._pricing-plans')
-
-                {{-- <div class="col-lg-4">
-                    <div class="single-price-plan">
-                        <h4>Normal</h4>
-                        <div class="price-plan">
-                            <h2>55 <span>$</span></h2>
-                            <p>Monthly</p>
-                        </div>
-                        <ul>
-                            <li>Unlimited access to the gym</li>
-                            <li>1 classes per week</li>
-                            <li>FREE drinking package</li>
-                            <li>1 Free personal training</li>
-                        </ul>
-                        <a href="#" class="primary-btn price-btn">Get Started</a>
-                    </div>
-                </div>
-                <div class="col-lg-4">
-                    <div class="single-price-plan">
-                        <h4>Professional</h4>
-                        <div class="price-plan">
-                            <h2>95 <span>$</span></h2>
-                            <p>Monthly</p>
-                        </div>
-                        <ul>
-                            <li>Unlimited access to the gym</li>
-                            <li>2 classes per week</li>
-                            <li>FREE drinking package</li>
-                            <li>2 Free personal training</li>
-                        </ul>
-                        <a href="#" class="primary-btn price-btn">Get Started</a>
-                        <div class="tic-text">
-                            <i class="fa fa-star"></i>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4">
-                    <div class="single-price-plan">
-                        <h4>Advanced</h4>
-                        <div class="price-plan">
-                            <h2>165 <span>$</span></h2>
-                            <p>Monthly</p>
-                        </div>
-                        <ul>
-                            <li>Unlimited access to the gym</li>
-                            <li>6 classes per week</li>
-                            <li>FREE drinking package</li>
-                            <li>5 Free personal training</li>
-                        </ul>
-                        <a href="#" class="primary-btn price-btn">Get Started</a>
-                    </div>
-                </div> --}}
             </div>
         </div>
     </section>
@@ -355,19 +303,6 @@
                 console.log(isChecked);
                 switchPlan();
             });
-
-            // $("#contact_form").validate({
-            //     rules:{
-            //         name:{
-            //             required: true,
-            //             minlength: 3,
-            //             maxlength: 20,
-            //         },
-            //         message:{
-            //             required: true,
-            //         },
-            //     }
-            // });
 
             $('#contact_form').submit(function(e) { 
                 let form = $(this).serializeArray();
